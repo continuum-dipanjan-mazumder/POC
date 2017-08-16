@@ -1,8 +1,8 @@
 package main
 
 import (
+	"POC/config"
 	"fmt"
-	"kafkaPOC/config"
 
 	"github.com/ContinuumLLC/platform-common-lib/src/kafka"
 )

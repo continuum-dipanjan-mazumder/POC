@@ -1,8 +1,8 @@
 package main
 
 import (
+	"POC/config"
 	"encoding/json"
-	"kafkaPOC/config"
 	"log"
 	"time"
 
