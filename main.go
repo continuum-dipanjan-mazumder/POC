@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"kafkaPOC/config"
 	"log"
 	"time"
@@ -20,7 +19,7 @@ func main() {
 	}
 
 	conf := config.LoadConfiguration("config/kafka.json")
-	fmt.Println(conf)
+
 	go pushData(producer, conf.TopicName)
 
 	consumer, err := getKafkafkaConsumer()
