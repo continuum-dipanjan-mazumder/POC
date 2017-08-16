@@ -18,9 +18,7 @@ func main() {
 		log.Printf("Error creating a Producer")
 	}
 
-	conf := config.LoadConfiguration("config/kafka.json")
-
-	go pushData(producer, conf.TopicName)
+	go pushData(producer, config.GetTopic())
 
 	consumer, err := getKafkafkaConsumer()
 	if err != nil {
