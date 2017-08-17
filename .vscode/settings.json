@@ -3,5 +3,7 @@
 {
     "go.lintTool": "gometalinter",
     "go.lintOnSave": true,
-    "workbench.colorTheme": "Visual Studio Light"
+    "workbench.colorTheme": "Visual Studio Light",
+    "git.username": "continuum-dipanjan-mazumder",
+    "git.email": "dipanjan.mazumder@continuum.net"
 }
