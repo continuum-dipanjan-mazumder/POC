@@ -6,13 +6,13 @@ import (
 	"log"
 	"time"
 
+	"fmt"
+
 	"github.com/ContinuumLLC/platform-common-lib/src/kafka"
 )
 
-var cha1 = make(chan string)
-
 func main() {
-
+	fmt.Print()
 	producer, err := getKafkaProducer()
 	if err != nil {
 		log.Printf("Error creating a Producer")
@@ -44,12 +44,6 @@ func pushData(producer kafka.ProducerService, topic string) {
 	}
 }
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 type payload struct {
 	Name string
 	Age  int
@@ -60,6 +54,6 @@ func getMessage(name string) string {
 	p.Name = name
 	p.Age = 33
 
-	payloadJson, _ := json.Marshal(p)
-	return string(payloadJson)
+	payloadJSON, _ := json.Marshal(p)
+	return string(payloadJSON)
 }
