@@ -29,6 +29,7 @@ func StartProducer() {
 	if err != nil {
 		log.Printf("Error creating a Producer")
 	}
+
 	go pushData(producer, config.GetTopic())
 
 }
