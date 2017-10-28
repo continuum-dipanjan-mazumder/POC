@@ -1,32 +1,57 @@
-#Start Zookeper server
-sudo /usr/local/zookeeper/bin/zkServer.sh start
-#telnet localhost 2181
-#srvr
+--> When Ran "sudo docker run hello-world" below happenedd":
+
+1. The Docker client contacted the Docker daemon(server).
+2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
 
 
-#Start Kafka server
-sudo /usr/local/kafka/bin/kafka-server-start.sh -daemon /usr/local/kafka/config/server.properties
+--> Removing a docker image:
+sudo docker rmi <image_id>
 
-#Create a topic
-#/usr/local/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic testDeep
+--> Running docker app:
+sudo docker run --rm my-go-app
 
-#describe the created topic:
-#sudo /usr/local/kafka/bin/kafka-topics.sh --zookeeper localhost:2181 --describe --topic testDeep
 
-#Produce messages to a test topic:
-/usr/local/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic testDeep
-Test Message 1
-Test Message 2
---> ctrl + D
+#Building and creating a docker image
+sudo docker build -t poc-app .
 
-#Consume messages from a test topic:
-/usr/local/kafka/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic testDeep --from-beginning
-Test Message 1
-Test Message 2
---> ctrl + c
+#Running a docker container use --net="host" to access the host os server as localhost
+sudo docker run -e KAFKA_CONFIG='/go/src/POC/config' -v /home/ankita/go:/go --net="host" --name poc-go poc-app
 
-#Install SQLlite
-sudo apt-get install sqlite3 libsqlite3-dev
+#Running a microservice with docker -p 4000:8080 means tunnelling calls to localhost:4000 to docker exposed port 8080 where the service is running
+sudo docker run -p 4000:8080 -v /home/ankita/go:/go --name poc-micro poc-micro
 
-#Create database
-sqlite3 junoalert.db
+
+#Removing a docker container
+sudo docker rm -f poc-go
+
+#stopping a docker container gracefully
+docker stop <container-name>
+
+#killing a docker container
+docker kill ----signal=SIGINT <docker-container-name>
+
+#exploring files in docker container
+sudo docker run -i -t <container-name> /bin/bash
+
+#installing Docker compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.16.0-rc1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+RUN git clone -b docker https://continuum-dipanjan-mazumder:13Chandana@github.com/ContinuumLLC/platform-common-lib /home/ankita/doc_eg/
+
+#Backing up a docker image:
+sudo docker save myusername/myproject:latest | gzip -c > myproject_img_bak20141103.tgz
+
+#Restoring a Docker Image:
+gunzip -c myproject_img_bak20141103.tgz |sudo docker load
+
+
+Running Kafka Docker container:
+===============================
+- Install docker in machine [https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/]
+- run below command to download and start the spotify/docker container
+	 docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=localhost --env ADVERTISED_PORT=9092 spotify/kafka
+

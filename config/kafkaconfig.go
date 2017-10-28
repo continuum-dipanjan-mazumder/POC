@@ -26,7 +26,9 @@ func LoadConfiguration(file string) Kafkaconfig {
 
 func GetBrokerAddress() string {
 	conf := LoadConfiguration(getConfigFileLocation() + "/kafka.json")
+
 	address := fmt.Sprintf("%s%s%d", conf.Hostname, ":", conf.Port)
+	fmt.Println("Address is %s", address)
 	return address
 }
 
