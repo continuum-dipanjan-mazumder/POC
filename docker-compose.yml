@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+ app-tier:
+  driver: bridge
+
+
+services:
+ kafka:
+  image: spotify/kafka
+  environment:
+   ADVERTISED_HOST: localhost
+   ADVERTISED_PORT: 9092
+  ports: 
+   - "9092:9092"
+   - "2181:2181"
+
+ cassandra:
+  image: bitnami/cassandra:3.7-r2
+  volumes:
+   - /home/ankita/cassandra:/bitnami
+  environment:
+   CASSANDRA_CQL_PORT_NUMBER: 9042
+  ports:
+   - "9042:9042"
+  networks:
+   - app-tier

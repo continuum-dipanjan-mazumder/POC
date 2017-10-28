@@ -39,16 +39,16 @@ func StartConsumer() {
 		log.Println(conMessage.Topic)
 		log.Println(conMessage.Offset)
 
-		queryParams := (map[string]string{
-			"id": "John",
-		})
-		url := "http://localhost:8080/"
-		body, err := restClient.Get(url, queryParams)
-		if err != nil {
-			log.Printf(err.Error())
-		}
+		//		queryParams := (map[string]string{
+		//			"id": "John",
+		//		})
+		//		url := "http://localhost:8080/"
+		//		body, err := restClient.Get(url, queryParams)
+		//		if err != nil {
+		//			log.Printf(err.Error())
+		//		}
 
-		log.Println(body)
+		//		log.Println(body)
 	})
 
 }

@@ -55,3 +55,7 @@ Running Kafka Docker container:
 - run below command to download and start the spotify/docker container
 	 docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=localhost --env ADVERTISED_PORT=9092 spotify/kafka
 
+  myapp:
+   image: 'YOUR_APPLICATION_IMAGE'
+   networks:
+     - app-tier
